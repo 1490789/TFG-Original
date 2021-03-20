@@ -1,0 +1,29 @@
+h1{
+    margin-top: 50px;
+}
+p{
+    font-size: 20px;
+
+}
+h1, h4, p {
+    text-align: center;
+}
+h1, h4{
+    font-weight: 700;
+}
+
+.gf-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.gf-header a {
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+}
+
+.gf-header a:hover {
+    text-decoration: underline;
+}
+
