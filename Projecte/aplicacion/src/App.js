@@ -4,13 +4,15 @@ import HomePage from './Components/HomePage.js';
 import Header from './Components/Header';
 import Registrar from "./Components/Registrar";
 import Login from './Login.js'
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import {Switch, Route} from "wouter";
-
+import useUser from "./Servicio/autenticationservice";
 import {UserContextProvider} from "./Context/UserContextProvider";
 
 export default function App () {
+
+
   return (
       <UserContextProvider>
           <div>

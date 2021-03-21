@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import './Login.css';
 import {useLocation} from "wouter";
-import {autenticationService} from "./Servicio/autenticationservice";
+import useUser from "./Servicio/autenticationservice";
 
 export default function Login(){
     const [profile, setProfile] = useState({})
     const [, navigate] =useLocation();
-    const [islogged, setIsLogged] =useState(false);
+    const {login, isLogged} = useUser();
 
+    useEffect(() => {
+        if(isLogged) navigate('/Homepage')
+    }, [isLogged, navigate])
 
     const handleChange = ({ target }) => {
         const  {name, value} = target;
@@ -19,8 +22,7 @@ export default function Login(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setIsLogged(autenticationService.login(profile));
-        navigate('/Homepage');
+        login(profile)
     };
 
 

@@ -3,9 +3,9 @@ import React,  {useState} from 'react';
 const Context = React.createContext({})
 
 export function UserContextProvider ({children}) {
-    const [profile, setProfile] = useState({})
+    const [jwt, setJWT] = useState(() => window.sessionStorage.getItem('jwt'));
 
-    return <Context.Provider value={{profile,setProfile}}>{children}</Context.Provider>
+    return <Context.Provider value={{jwt,setJWT}}>{children}</Context.Provider>
 }
 
 export default Context

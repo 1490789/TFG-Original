@@ -6,12 +6,10 @@ class HomePage extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            Response: ""
+            loggin: ""
         };
     }
-    callAPI() {
-        fetch("http://localhost:3306/alumnes").then(res=>res.text()).then(res=>this.state({Response: res}))
-    }
+
     render() {
         return(
             <div className="container">
