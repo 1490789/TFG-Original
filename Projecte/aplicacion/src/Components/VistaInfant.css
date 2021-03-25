@@ -1,0 +1,29 @@
+.Infant {
+    background-color: #343a40!important;
+    border:3px solid #343a40;
+    border-radius:22px;
+    margin-top: 20px;
+}
+
+.InfantText{
+    text-align: left;
+    color: snow;
+}
+
+.InfantText h4{
+text-align: left;
+}
+
+.InfantText p{
+    text-align: left;
+    margin: auto;
+    font-size: 18px;
+    padding: 0px;
+}
+.btnElimina{
+    margin: auto;
+}
+.btnElimina button{
+    margin: auto;
+   align-items: center;
+}

@@ -2,14 +2,16 @@ import React, {useState, useEffect} from 'react';
 import './Login.css';
 import {useLocation} from "wouter";
 import useUser from "./Servicio/autenticationservice";
+import {Alert} from "react-bootstrap";
+
 
 export default function Login(){
     const [profile, setProfile] = useState({})
     const [, navigate] =useLocation();
-    const {login, isLogged} = useUser();
+    const {login, isLogged, invalid, user} = useUser();
 
     useEffect(() => {
-        if(isLogged) navigate('/Homepage')
+        if(isLogged) {navigate('/Homepage')}
     }, [isLogged, navigate])
 
     const handleChange = ({ target }) => {
@@ -45,6 +47,11 @@ export default function Login(){
                         </div>
                         <button type="submit" className="btn btn-dark">Login</button>
                     </form>
+                </div>
+                <div className="row justify-content-center">
+                    {
+                        invalid ? <Alert className="Alert" variant={"danger"}><p className="Alert-text">Revisa l'usuari i contrasenya</p></Alert> :  null
+                    }
                 </div>
             </div>
 

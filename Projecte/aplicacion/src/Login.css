@@ -17,5 +17,13 @@
     display: flex;
     justify-content: center;
 }
+.Alert{
+    margin-top: 20px;
+}
+.Alert-text {
+    font-size: 15px;
+    justify-content: center;
+
+}
 
 

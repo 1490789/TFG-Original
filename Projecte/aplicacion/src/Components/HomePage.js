@@ -1,29 +1,42 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Table, Button, Container, Modal, ModalBody, ModalHeader} from "reactstrap";
+import useUser from "../Servicio/autenticationservice";
+import HomePageAdmin from "./HomePageAdmin";
+import HomePageUsu from "./HomePageUsu";
+import {useLocation, Redirect} from "wouter";
 
-class HomePage extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            loggin: ""
-        };
-    }
+import './HomePage.css';
 
-    render() {
-        return(
-            <div className="container">
-            <div className="row">
-                <div className="col-5">
-                    <h1>Nombre Hijo</h1>
-                    <h1>curso</h1>
-                    <Button color="primary">Editar Perfil</Button>
+export default function HomePage () {
+    const {isLogged, user, foundname} = useUser();
+    useEffect(()=>{foundname()},[user] )
+    return(
+        <div>
+            { !isLogged ? <Redirect to={'/'}/> :
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="section-heading">
+                                <h2>Home</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+
+                            {
+                                user == 'admin' ?
+                                    <HomePageAdmin/>
+                                    :
+                                    <HomePageUsu/>
+                            }
+                    </div>
                 </div>
-            </div>
-            </div>
-        );
-    }
+                }
+
+        </div>
+
+    );
 }
-export default HomePage;
+
 
 

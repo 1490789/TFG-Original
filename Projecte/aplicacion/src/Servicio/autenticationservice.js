@@ -4,9 +4,11 @@ import Context from "../Context/UserContextProvider";
  export default function useUser () {
     const {jwt, setJWT} = useContext(Context);
     const [user, setUser] = useState('');
+    const [invalid, setInvalid] = useState(false);
+
      const login = useCallback((item) => {
          const cargoUtil = JSON.stringify(item);
-         alert(cargoUtil);
+         setUser(item.usuari);
          fetch("http://localhost/IniciaSessio.php",{
              method:"POST",
              headers: {
@@ -14,9 +16,9 @@ import Context from "../Context/UserContextProvider";
              },
              body: cargoUtil
          }).then(res=>{
-             if(!res.ok) throw new Error('Response is NOT ok')
              return res.json()
          }).then((res)=>{
+             if(!res) return setInvalid(true);
              window.sessionStorage.setItem('jwt',res);
              setJWT(res)
          }).catch(err => {
@@ -52,6 +54,7 @@ import Context from "../Context/UserContextProvider";
          login,
          logout,
          foundname,
+         invalid,
          user
      }
  };
