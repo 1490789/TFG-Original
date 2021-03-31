@@ -67,7 +67,7 @@ export default function RegistrarInfant(){
                         </div>
                         <div className="form-group">
                             <label htmlFor="Observacions">Observacions</label>
-                            <input value={profile.Observacions || ''} type="text" name="Observacions" id="Observacions" className="form-control" onChange={handleChange} maxLength="30"/>
+                            <input value={profile.Observacions || ''} type="text" name="Observacions" id="Observacions" className="form-control" onChange={handleChange} maxLength="50"/>
                         </div>
                         <button type="submit" className="btn btn-dark">Registrar infant</button>
                     </form>

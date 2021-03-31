@@ -7,17 +7,16 @@ import {Navegador} from "./Navegador";
 
 
 export default function Header() {
-    const {isLogged, logout, foundname, user} = useUser();
+    const {isLogged, logout, user} = useUser();
     const [, navigate] =useLocation();
 
     useEffect(()=>{
-        if(isLogged) foundname();
     },[isLogged])
 
     const handleclick = e => {
         e.preventDefault();
         logout();
-        navigate('/');
+        navigate('/Homepage');
     }
 
     return(
@@ -30,10 +29,10 @@ export default function Header() {
                         :
                         <div className="container">
                             <div className="row">
-                                <div className="col-md-12">
-                                    <h1>MenjaTickets</h1>
+                                <div className="col-md-12 LoginTitle">
+                                    <h1 className="">MenjaTickets</h1>
                                     <br/>
-                                    <p className="subtitle"> Compra i gestiona facilment els tickets menjador de l'Escola</p>
+                                    <p className="subtitle"> Compra i gestiona facilment els tickets menjador de l'Escola dels teus fills</p>
                                 </div>
                             </div>
                         </div>

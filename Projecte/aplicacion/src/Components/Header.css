@@ -12,19 +12,30 @@ h1, h4{
     font-weight: 700;
 }
 
-.gf-header {
-    display: flex;
-    justify-content: flex-end;
+
+.dropdown-menu{
+    background-color: #343a40;
+    margin: auto;
+}
+.dropdown-item{
+    color: white;
 }
 
-.gf-header a {
-    font-size: 16px;
-    font-weight: 600;
-    color: black;
+.dropdown-item:hover{
+    background-color: #282c34;
+    color: white;
+
+}
+ a{
+    color: snow;
 }
 
-.gf-header a:hover {
-    text-decoration: underline;
+@media (max-width: 500px) {
+    .dropdown-item{
+        width: 25%
+    }
+    .LoginTitle h1{
+        font-size: 40px;
+    }
+
 }
-
-

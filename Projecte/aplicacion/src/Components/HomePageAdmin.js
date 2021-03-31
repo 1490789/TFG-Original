@@ -18,10 +18,10 @@ export default function HomePageAdmin () {
     return(
             <div>
                 <div className="col">
-                    <InfantButton name={"Registrar Usuari"} onClick={handleclick}>Afegir Usuari </InfantButton>
+                    <InfantButton name={"Registrar Usuari"} onClick={handleclick}/>
                 </div>
                 <div className="col">
-                    <InfantButton name={"Afegir Infant"} onClick={handleclick2} ></InfantButton>
+                    <InfantButton name={"Afegir Infant"} onClick={handleclick2}/>
                 </div>
             </div>
     );

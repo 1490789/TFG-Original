@@ -1,0 +1,14 @@
+.PopupAlert{
+    margin: auto;
+}
+
+
+
+.PopupAlert button {
+    align-items: center;
+    margin-top: 10px;
+    margin-bot: 10px;
+}
+.PopupAlert h1{
+    font-size: 20px;
+}

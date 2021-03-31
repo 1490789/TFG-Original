@@ -11,7 +11,9 @@ export default function Login(){
     const {login, isLogged, invalid, user} = useUser();
 
     useEffect(() => {
-        if(isLogged) {navigate('/Homepage')}
+        if(isLogged){
+            navigate('/Homepage');
+        }
     }, [isLogged, navigate])
 
     const handleChange = ({ target }) => {
@@ -31,6 +33,7 @@ export default function Login(){
 
     return(
         <div>
+
             <div className="container">
                 <div className="abs-center">
                     <form onSubmit={handleSubmit} className=" p-2 form">

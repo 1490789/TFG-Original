@@ -1,42 +1,53 @@
 import React, {useEffect} from "react";
-import {Button} from "react-bootstrap";
+import {Button, Card, Accordion} from "react-bootstrap";
 import './VistaInfant.css';
+import PopupAlert from "./PopupAlert";
 
-export default function VistaInfant({profile, fill}) {
 
-
+export default function VistaInfant({profile}) {
     const handleClick = (item) => {
 
     };
 
     return(
         <div className="col-md-12">
-        { fill ?
-            <div className="container">
-                <div className="row Infant">
-                    <div className="col InfantText">
-                        <h4>{profile.Nom}</h4>
-                        <h5>{profile.Congnom}</h5>
+        <div className="container ">
+            <div className="row Infant">
+            <Accordion className="col-10 Acordion">
+                <Accordion.Toggle className="InfantTitle" variant={"dark"} eventKey="0" as={Card.Header}>
+                    <h4>{profile.Nom} {profile.Congnom}</h4>
+                </Accordion.Toggle>
+                <Accordion.Collapse className="MenuInfant"  eventKey="0">
+                    <div className="row ">
+                        <div className="col-auto InfantText">
+                            <p>Edat: {profile.Edat} anys</p>
+                            <p>Curs: {profile.IDCurs}</p>
+                        </div>
+
+                        <div className="col-auto InfantText">
+                            <h5>Observacions:</h5>
+                            <p>{profile.Observacions}</p>
+                        </div>
+
+                        <div className="col-md-auto InfantText">
+                            <h5>Persona de Contacte</h5>
+                            <p>{profile.Tutor}</p>
+                            <p>Telefon: {profile.telefon}</p>
+                        </div>
+
+
+
+                        <div className="col-auto btnEdita">
+                            <Button variant="primary">Edita</Button>
+                        </div>
                     </div>
-                    <div className="col InfantText">
-                        <p>Edat: {profile.Edat}</p>
-                        <p>Curs: {profile.IDCurs}</p>
-                    </div>
-                    <div className="col InfantText">
-                        <h5>Observacions:</h5>
-                        <p>{profile.Observacions}</p>
-                    </div>
-                    <div className="col InfantText">
-                        <h5>Persona de Contacte</h5>
-                        <p>{profile.Tutor}</p>
-                        <p>Telefon: {profile.telefon}</p>
-                    </div>
-                    <div className="col btnElimina">
-                        <Button variant="danger" onClick={handleClick(profile.Nom)}>Elimina</Button>
-                    </div>
+                </Accordion.Collapse>
+            </Accordion>
+                <div className="col btnElimina">
+                    <PopupAlert idInfant = {profile.idAlumne}/>
                 </div>
-            </div> : <h1>Afegeix al teu fill</h1>
-        }
+            </div>
+        </div>
         </div>
     )
 

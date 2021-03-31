@@ -4,6 +4,7 @@ import ServeiVistaInfant from "../Servicio/Servei_VistaInfant";
 import {useLocation, Redirect} from "wouter";
 import InfantButton from "./InfantButton";
 import VistaInfant from "./VistaInfant";
+import Calendari from "./Calendari";
 
 export default function HomePageUsu () {
     const {profiles, getInfant, fill} = ServeiVistaInfant();
@@ -12,23 +13,33 @@ export default function HomePageUsu () {
 
     useEffect(() => {
         getInfant();
-    },[fill])
+    },[])
 
     const handleclick = (e) =>{
         e.preventDefault();
         navigate('/RegistreInfant')
     }
-    const viewInfant = profiles.map((profile) =>
-        <VistaInfant fill={fill} profile={profile}></VistaInfant>)
+    const viewInfant = () =>{
+        if(profiles != null) {
+            return profiles.map((profile) =>
+        <VistaInfant profile={profile}></VistaInfant>)
+        }
+    }
 
 
     return(
          <div className="service">
-                {viewInfant}
-                <hr/>
-                <div className="col-md-12">
-                    <InfantButton name={"Afegir Infant"} onClick={handleclick}></InfantButton>
-                </div>
+
+                 {fill ? viewInfant() : <h1>Afegeix al teu fill</h1>}
+                 <hr/>
+             <div className="col-md-12">
+                 <InfantButton name={"Afegir Infant"} onClick={handleclick}></InfantButton>
+             </div>
+
+             <div className="col-md-12">
+                 <Calendari></Calendari>
+             </div>
+
          </div>
     );
 }

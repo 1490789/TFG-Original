@@ -2,13 +2,11 @@ import React, {useCallback, useContext, useState} from 'react';
 import Context from "../Context/UserContextProvider";
 
  export default function useUser () {
-    const {jwt, setJWT} = useContext(Context);
-    const [user, setUser] = useState('');
+    const {jwt, setJWT, user, setUser} = useContext(Context);
     const [invalid, setInvalid] = useState(false);
 
      const login = useCallback((item) => {
          const cargoUtil = JSON.stringify(item);
-         setUser(item.usuari);
          fetch("http://localhost/IniciaSessio.php",{
              method:"POST",
              headers: {
@@ -20,17 +18,21 @@ import Context from "../Context/UserContextProvider";
          }).then((res)=>{
              if(!res) return setInvalid(true);
              window.sessionStorage.setItem('jwt',res);
-             setJWT(res)
+             window.sessionStorage.setItem('user',item['usuari']);
+             setJWT(res);
+             setUser(item['usuari']);
          }).catch(err => {
              window.sessionStorage.removeItem('jwt');
+             window.sessionStorage.removeItem('user');
              alert(err)})
      }, [setJWT]);
 
      const logout = useCallback(() => {
          window.sessionStorage.removeItem('jwt');
+         window.sessionStorage.removeItem('user');
         setJWT(null);
         setUser(null);
-     }, [setJWT])
+     }, [setJWT, setUser])
 
      const foundname = useCallback(() => {
          const cargoUtil = JSON.stringify(jwt);

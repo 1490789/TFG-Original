@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useUser from "../Servicio/autenticationservice";
 import HomePageAdmin from "./HomePageAdmin";
@@ -8,8 +8,11 @@ import {useLocation, Redirect} from "wouter";
 import './HomePage.css';
 
 export default function HomePage () {
-    const {isLogged, user, foundname} = useUser();
-    useEffect(()=>{foundname()},[user] )
+    const {isLogged, user} = useUser();
+
+    useEffect(()=>{
+    }, [isLogged, user] )
+
     return(
         <div>
             { !isLogged ? <Redirect to={'/'}/> :
@@ -22,13 +25,12 @@ export default function HomePage () {
                         </div>
                     </div>
                     <div className="row">
-
-                            {
-                                user == 'admin' ?
-                                    <HomePageAdmin/>
-                                    :
-                                    <HomePageUsu/>
-                            }
+                        {
+                            user === 'admin' ?
+                                <HomePageAdmin/>
+                                :
+                                <HomePageUsu/>
+                        }
                     </div>
                 </div>
                 }
