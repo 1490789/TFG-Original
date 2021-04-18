@@ -3,15 +3,17 @@ import './Header.css';
 import {useLocation} from "wouter";
 import useUser from "../Servicio/autenticationservice";
 import {Navegador} from "./Navegador";
+import useDiners from "../Servicio/Servei_Diners";
 
 
 
 export default function Header() {
     const {isLogged, logout, user} = useUser();
+    const {diners, vistaDiners} = useDiners();
     const [, navigate] =useLocation();
 
     useEffect(()=>{
-    },[isLogged])
+    },[isLogged, diners])
 
     const handleclick = e => {
         e.preventDefault();
@@ -25,7 +27,7 @@ export default function Header() {
 
                 {
                     isLogged ?
-                        <Navegador name={user} onClick={handleclick}> </Navegador>
+                        <Navegador name={user} saldo={diners} funcionsaldo={vistaDiners} onClick={handleclick}/>
                         :
                         <div className="container">
                             <div className="row">

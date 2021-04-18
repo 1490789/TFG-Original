@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ServeiVistaInfant from "../Servicio/Servei_VistaInfant";
 import {useLocation, Redirect} from "wouter";
 import InfantButton from "./InfantButton";
 import VistaInfant from "./VistaInfant";
-import Calendari from "./Calendari";
+import CalendariDinamic from "./CalendariDinamic";
 
 export default function HomePageUsu () {
     const {profiles, getInfant, fill} = ServeiVistaInfant();
@@ -22,24 +22,35 @@ export default function HomePageUsu () {
     const viewInfant = () =>{
         if(profiles != null) {
             return profiles.map((profile) =>
-        <VistaInfant profile={profile}></VistaInfant>)
+        <VistaInfant profile={profile}/>)
         }
     }
 
 
+
+
     return(
          <div className="service">
-
                  {fill ? viewInfant() : <h1>Afegeix al teu fill</h1>}
                  <hr/>
              <div className="col-md-12">
-                 <InfantButton name={"Afegir Infant"} onClick={handleclick}></InfantButton>
+                 <InfantButton name={"Afegir Infant"} onClick={handleclick}/>
              </div>
-
              <div className="col-md-12">
-                 <Calendari></Calendari>
-             </div>
+                 <div className="section-heading">
+                     <h3>Tiquets</h3>
+                     <ul className="lista-tiquets">
+                         <li>Selecciona els dies vulguis reservar.</li>
+                         <li>Prem el botó de compra.</li>
+                         <li>Selecciona que fill vindrá cada dia.</li>
+                         <li>Fes el pagament dels Tiquets</li>
+                     </ul>
+                 </div>
 
+             </div>
+             <div className="col-md-12">
+                 <CalendariDinamic profiles={profiles}/>
+             </div>
          </div>
     );
 }

@@ -1,13 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Button, Card, Accordion} from "react-bootstrap";
 import './VistaInfant.css';
 import PopupAlert from "./PopupAlert";
 
 
 export default function VistaInfant({profile}) {
-    const handleClick = (item) => {
-
-    };
 
     return(
         <div className="col-md-12">

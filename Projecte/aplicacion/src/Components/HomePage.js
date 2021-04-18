@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import useUser from "../Servicio/autenticationservice";
 import HomePageAdmin from "./HomePageAdmin";
 import HomePageUsu from "./HomePageUsu";
-import {useLocation, Redirect} from "wouter";
+import { Redirect} from "wouter";
 
 import './HomePage.css';
 

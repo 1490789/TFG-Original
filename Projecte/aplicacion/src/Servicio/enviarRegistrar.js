@@ -5,7 +5,6 @@ export default function Registre() {
 
     const registra = useCallback((item) => {
         const cargoUtil = JSON.stringify(item);
-        alert(cargoUtil);
         fetch("http://localhost/registrarse.php", {
             method: "POST",
             headers: {

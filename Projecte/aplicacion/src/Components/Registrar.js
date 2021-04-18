@@ -31,7 +31,7 @@ export default function Registrar(){
                 <div className="abs-center">
                     <form onSubmit={handleSubmit} className=" p-2 form">
                         <div className="form-group">
-                            <h4>Registrar Usuario</h4>
+                            <h4>Registrar Usuari</h4>
                         </div>
                         <div className="form-group">
                             <label htmlFor="usuari">Usuari</label>

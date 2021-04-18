@@ -8,8 +8,7 @@ import ServeiVistaInfant from "../Servicio/Servei_VistaInfant";
 export default function PopupAlert ({idInfant}) {
     const {deleteInfant} = ServeiVistaInfant();
     const [visible, setVisible] = useState(false);
-    const tamaño = {width: 250, height: 150}
-
+    const style = {backgroundColor: '#343a40'}
     const openModal = () =>  {
         setVisible(true);
     }
@@ -33,12 +32,11 @@ export default function PopupAlert ({idInfant}) {
                 visible={visible}
                 effect="fadeInDown"
                 onClickAway={closeModal}
-                className="PopupModal"
-                width = "250"
-                height="150"
+                size={"lg"}
+                style={style}
                >
                 <div className="PopupAlert">
-                    <h1>¿Vols eliminar al teu fill?</h1>
+                    <h4 className="PopupTitle">¿Vols eliminar al teu fill?</h4>
                     <div className="row">
                         <div className="col">
                             <Button variant="success"  value="Open" onClick={closeModal}>Cancela</Button>

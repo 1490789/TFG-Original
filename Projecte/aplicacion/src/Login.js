@@ -8,7 +8,7 @@ import {Alert} from "react-bootstrap";
 export default function Login(){
     const [profile, setProfile] = useState({})
     const [, navigate] =useLocation();
-    const {login, isLogged, invalid, user} = useUser();
+    const {login, isLogged, invalid, isloading} = useUser();
 
     useEffect(() => {
         if(isLogged){
@@ -33,8 +33,9 @@ export default function Login(){
 
     return(
         <div>
+            { isloading  && <strong>Cheking credentials...</strong>}
 
-            <div className="container">
+            { !isloading && <div className="container">
                 <div className="abs-center">
                     <form onSubmit={handleSubmit} className=" p-2 form">
                         <div className="form-group">
@@ -42,24 +43,26 @@ export default function Login(){
                         </div>
                         <div className="form-group">
                             <label htmlFor="usuari">Usuari</label>
-                            <input value={profile.usuari || ''} type="text" name="usuari" id="usuari" className="form-control" onChange={handleChange} minLength={"1"}/>
+                            <input value={profile.usuari || ''} type="text" name="usuari" id="usuari"
+                                   className="form-control" onChange={handleChange} minLength={"1"}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="pass">Contraseña</label>
-                            <input value={profile.pass || ''} type="password" name="pass" id="pass" className="form-control" onChange={handleChange} minLength={"1"}/>
+                            <input value={profile.pass || ''} type="password" name="pass" id="pass"
+                                   className="form-control" onChange={handleChange} minLength={"1"}/>
                         </div>
                         <button type="submit" className="btn btn-dark">Login</button>
                     </form>
                 </div>
                 <div className="row justify-content-center">
                     {
-                        invalid ? <Alert className="Alert" variant={"danger"}><p className="Alert-text">Revisa l'usuari i contrasenya</p></Alert> :  null
+                        invalid ?
+                            <Alert className="Alert" variant={"danger"}><p className="Alert-text">Revisa l'usuari i
+                                contrasenya</p></Alert> : null
                     }
                 </div>
-            </div>
-
+            </div>}
         </div>
-
     );
 
 }
