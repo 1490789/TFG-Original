@@ -32,8 +32,6 @@ export default function VistaInfant({profile}) {
                             <p>Telefon: {profile.telefon}</p>
                         </div>
 
-
-
                         <div className="col-auto btnEdita">
                             <Button variant="primary">Edita</Button>
                         </div>

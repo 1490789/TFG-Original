@@ -6,7 +6,10 @@ import useDiners from "../Servicio/Servei_Diners";
 export default function PopupAfegirDiners () {
     const [show, setShow] = useState(false);
     const [Saldo, setSaldo] = useState(null);
-    const {diners, afegirDiners} = useDiners();
+    const {diners, afegirDiners, vistaDiners} = useDiners();
+
+
+    useEffect(() =>{vistaDiners()},[])
 
     const handleClose = () => setShow(false);
     const handleShow = () => {
@@ -18,13 +21,22 @@ export default function PopupAfegirDiners () {
         event.preventDefault();
         const item = {};
         item['Saldo'] = suma().toString();
-        console.log(item)
         afegirDiners(item);
+        handleClose();
     }
     const handleChange = ({target}) => {
         const {name, value} = target
-        console.log(value)
-        setSaldo(parseInt(value))
+        if (value != null){
+            if(parseInt(value) < 0){
+                alert("La quantitat ha de ser positiva.")
+                setSaldo(parseInt(0));
+            }else {
+                setSaldo(parseInt(value))
+            }
+        }else {
+            setSaldo(parseInt(0))
+        }
+
     }
 
     const suma = () => {

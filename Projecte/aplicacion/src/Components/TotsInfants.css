@@ -6,16 +6,16 @@
     outline: 0;
     box-shadow: none;
 }
-.accordion{
+.infantAcordeon{
     border-radius: 20px;
     border: #343a40 1px solid;
     width: auto;
 }
-.accordion .collapseALL{
+.infantAcordeon .collapseALL{
     max-height: 40px;
 
 }
-.accordion .collapseALL p{
+.infantAcordeon .collapseALL p{
     text-align: left;
     font-size: 15px;
     margin: 0;

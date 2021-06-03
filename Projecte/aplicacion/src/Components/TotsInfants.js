@@ -2,6 +2,7 @@ import React, {useCallback, useEffect} from "react";
 import ServeiTotsInfants from "../Servicio/Servei_TotsInfants";
 import './TotsInfants.css';
 import InfantList from "./InfantList";
+import CursTitle from "./CursTitle";
 
 export default function  TotsInfants () {
 
@@ -15,10 +16,7 @@ export default function  TotsInfants () {
 
     const cursHeading = useCallback( () => {
         return cursos.map((curs) =>
-            <div className="TitleCurs">
-                <h2>{curs}</h2>
-                <div>{viewInfants(curs)}</div>
-            </div>
+            <CursTitle curs={curs} infants={viewInfants} />
         )
     })
 

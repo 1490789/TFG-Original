@@ -2,11 +2,11 @@ import React, {useCallback, useContext, useState} from 'react';
 import Context from "../Context/UserContextProvider";
 
 export default function ServeiVistaInfant() {
-    const {jwt, setJWT} = useContext(Context);
+    const {jwt} = useContext(Context);
     const [profiles, setProfiles] = useState(null);
     const [fill, setFill] = useState(false);
 
-    const  getInfant = useCallback(() => {
+    const getInfant = useCallback(() => {
         const cargoUtil = JSON.stringify(jwt);
         fetch("http://localhost/vistaInfant.php", {
             method: "POST",

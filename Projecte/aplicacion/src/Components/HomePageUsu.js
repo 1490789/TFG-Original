@@ -5,6 +5,7 @@ import {useLocation, Redirect} from "wouter";
 import InfantButton from "./InfantButton";
 import VistaInfant from "./VistaInfant";
 import CalendariDinamic from "./CalendariDinamic";
+import VistaMenu from "./VistaMenus";
 
 export default function HomePageUsu () {
     const {profiles, getInfant, fill} = ServeiVistaInfant();
@@ -30,7 +31,7 @@ export default function HomePageUsu () {
 
 
     return(
-         <div className="service">
+         <div>
                  {fill ? viewInfant() : <h1>Afegeix al teu fill</h1>}
                  <hr/>
              <div className="col-md-12">
@@ -40,10 +41,11 @@ export default function HomePageUsu () {
                  <div className="section-heading">
                      <h3>Tiquets</h3>
                      <ul className="lista-tiquets">
-                         <li>Selecciona els dies vulguis reservar.</li>
+                         <li>Selecciona els dies que vulguis reservar.</li>
                          <li>Prem el botó de compra.</li>
-                         <li>Selecciona que fill vindrá cada dia.</li>
-                         <li>Fes el pagament dels Tiquets</li>
+                         <li>Selecciona el menú.</li>
+                         <li>Selecciona que fill vindrà cada dia.</li>
+                         <li>Fes el pagament dels Tiquets.</li>
                      </ul>
                  </div>
 
@@ -51,6 +53,7 @@ export default function HomePageUsu () {
              <div className="col-md-12">
                  <CalendariDinamic profiles={profiles}/>
              </div>
+
          </div>
     );
 }

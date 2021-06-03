@@ -6,7 +6,8 @@
 }
 .Acordion{
     background-color: #343a40;
-
+    border: #343a40 1px solid;
+    border-radius: 10px;
 }
 .MenuInfant{
     margin-top: 20px;

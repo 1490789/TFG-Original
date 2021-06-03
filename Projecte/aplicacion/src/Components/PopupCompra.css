@@ -7,6 +7,13 @@
     vertical-align: center;
 }
 
+.Dia p{
+    vertical-align: center;
+}
+.ButtonName{
+    align-items: center;
+}
+
 @media (max-width: 400px) {
     .PopupCompra button{
         transform: scale(0.8);

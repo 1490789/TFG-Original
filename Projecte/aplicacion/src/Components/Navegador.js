@@ -3,12 +3,15 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {Link} from "wouter";
 import PopupAfegirDiners from "./PopupAfegirDiners";
+import PopupAfegirMenu from "./AfegirMenu";
 
 export class Navegador extends React.Component {
     componentDidMount() {
         this.props.funcionsaldo();
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+    }
 
     render() {
         return(
@@ -25,14 +28,20 @@ export class Navegador extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link><Link to={"/Homepage"}>Inici</Link></Nav.Link>
-                        {this.props.name === 'admin' ? <Nav.Link><Link to={"/TotsInfants"}>Infants</Link></Nav.Link> : <Nav.Link href="#link">Reserves</Nav.Link> }
+                        <Nav.Link href={"/Homepage"}>Inici</Nav.Link>
+                        {this.props.rol === 'Admin' ?
+                            <>  <Nav.Link><Link to={"/TotsInfants"}>Infants</Link></Nav.Link>
+                                <Nav.Link><Link to={"/AfegirMenu"}>Menus</Link></Nav.Link>
+                                <Nav.Link><Link to={"/Registre"}>Registrar Usuaris</Link></Nav.Link></>
+                            :
+                            <Nav.Link><Link to={"/VistaTiquets"}>Reserves</Link></Nav.Link> }
                         <NavDropdown title={this.props.name} id="basic-nav-dropdown">
-                            <NavDropdown.Item><PopupAfegirDiners/></NavDropdown.Item>
+                            {this.props.rol === 'Admin' ? null : <NavDropdown.Item><PopupAfegirDiners/></NavDropdown.Item>}
+                            <NavDropdown.Item>Canviar Contrasenya</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item onClick={this.props.onClick}>Tanca sessió</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Item>{this.props.saldo}€</Nav.Item>
+                        {this.props.rol !== 'Admin' ? <Nav.Link >Disponible: {this.props.saldo}€</Nav.Link> : null }
                     </Nav>
                 </Navbar.Collapse>
                 </div>

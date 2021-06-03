@@ -1,14 +1,14 @@
 h1{
     margin-top: 50px;
 }
-p{
+.subtitle{
     font-size: 20px;
 
 }
-h1, h4, p {
+h1, p {
     text-align: center;
 }
-h1, h4{
+h1{
     font-weight: 700;
 }
 
@@ -26,9 +26,14 @@ h1, h4{
     color: white;
 
 }
- a{
-    color: snow;
+a{
+     color: rgba(255,255,255,.5);
 }
+ a:hover{
+     color: rgba(255,255,255,.7);
+     border: none;
+ }
+
 
 @media (max-width: 500px) {
     .dropdown-item{

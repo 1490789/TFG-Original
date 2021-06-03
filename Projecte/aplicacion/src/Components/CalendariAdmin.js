@@ -1,24 +1,23 @@
-import React, {useEffect, useState} from "react";
-import 'react-calendar/dist/Calendar.css';
-import { Button} from "react-bootstrap";
-import ListDays from "./ListDays";
+import React, {useCallback, useEffect, useState} from "react";
+import {Accordion, Button, Card, Form} from "react-bootstrap";
+import useAssistencia from "../Servicio/Servei_Assistencia";
+import LlistaTiquets from "./VistaTiquetsDia";
+import "./VistaTiquetsDia.css";
+import CursTitle from "./CursTitle";
 
-export default function Calendari ({Index, Any, profiles}) {
+
+export default function CalendariAdmin ({Index, Any}) {
     const dies_text = ["DL", "DT", "DC", "DJ", "DV", "DS", "DG"];
+    const cursos = ["P3","P4","P5","1r","2n","3r","4t","5e","6e"];
     const [value, setValue] = useState([]);
+    const {vistaTiquets, tiquets} = useAssistencia();
+
+    useEffect(() => {},[tiquets]);
 
     const handleClick = (val) => {
-        let find = false;
-        for (let i=0; i<value.length; i++){
-            if (val.getTime() === value[i].getTime()){
-                find = true;
-            }
-        }
-        if (!find){
-            setValue(prevState => [...prevState,val]);
-        }
+        const dia = val.getFullYear()+"-"+(val.getMonth() + 1)+"-"+ val.getDate();
+        vistaTiquets(dia);
     }
-
 
     const createMes = (any, iMes) => {
         return (createTabla(any,iMes))
@@ -27,8 +26,8 @@ export default function Calendari ({Index, Any, profiles}) {
     const createTabla = (any,iMes) => {
 
         return <table>
-                {createTitolDies()}
-                {createSetmanes(any,iMes)}
+            {createTitolDies()}
+            {createSetmanes(any,iMes)}
         </table>
 
     }
@@ -71,17 +70,17 @@ export default function Calendari ({Index, Any, profiles}) {
                     if(dia_semana === j){
                         if(dia_semana === 5 || dia_semana === 6){
                             dies.push(<td>
-                                    <Button  className={className} variant="dark" disabled>{fecha.getDate()}</Button>
+                                <Button  className={className} variant="dark" disabled>{fecha.getDate()}</Button>
                             </td>)
                         }else{
                             if(fecha < dia_actual ){
                                 dies.push(<td>
-                                        <Button   className={className} variant="info" disabled>{fecha.getDate()}</Button>
+                                    <Button   className={className} onClick={() => handleClick(fecha)}>{fecha.getDate()}</Button>
 
                                 </td>)
                             }else {
                                 dies.push(<td>
-                                        <Button className="day" onClick={() => handleClick(fecha)}>{fecha.getDate()}</Button>
+                                    <Button className="day" onClick={() => handleClick(fecha)}>{fecha.getDate()}</Button>
                                 </td>)
                             }
                         }
@@ -93,11 +92,8 @@ export default function Calendari ({Index, Any, profiles}) {
             }
             setmanes.push(<tr>{dies}</tr>)
         }
-
         return(setmanes)
     }
-
-
 
     function DataPerDia(any,iMes,dia) {
         var date = new Date(any,iMes, dia);
@@ -117,20 +113,44 @@ export default function Calendari ({Index, Any, profiles}) {
         return new Date(any, mes, 0).getDate();
     }
 
-    const eliminaDia = (index) => {
-        const listaActualizada = value.filter((day, i) => i !== index);
-        setValue(listaActualizada);
+    const cursHeading = useCallback( () => {
+        return cursos.map((curs, i) =>
+            <CursTitle curs={curs} titols={titols} infants={viewInfants}  />
+        )
+    })
+
+    const viewInfants = (curs) =>{
+        if (tiquets != null) {
+            return tiquets.map((t) => t.IDAlumno.IDCurs === curs ?
+                <LlistaTiquets tiquet={t}/> : null)
+        } else {
+            return <h1>No hi ha infants</h1>
+        }
+
     }
 
+    function titols() {
+        return  <li className={"row head"} >
+            <p className="col">ID</p>
+            <p className="col">Alumne</p>
+            <p className="col">Pagat</p>
+            <p className="col">Menú</p>
+        </li>
+    }
 
     return(<>
-        <div className="row justify-content-center">
+        <div className="row">
             <div className="col-auto margin">
                 {createMes(Any, Index)}
             </div>
-            <div className="col-auto">
-                <ListDays days={value} funcion={eliminaDia} profiles={profiles}/>
-            </div>
         </div>
+
+        {tiquets !== null ? <>
+            <Form>
+                <ul className="container">
+                  {cursHeading()}
+                </ul>
+            </Form> </>
+            : null}
     </>)
 }

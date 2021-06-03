@@ -27,7 +27,6 @@ export default function useDiners () {
     const afegirDiners = useCallback((item) => {
         item['jwt'] = jwt;
         const carga = JSON.stringify(item);
-        alert(carga);
         fetch("http://localhost/afegirDiners.php", {
             method: "POST",
             headers: {
@@ -38,7 +37,7 @@ export default function useDiners () {
             return res.json()
         }).then((res) => {
             if(res){
-                alert("S'ha fet l'ingres correctament")
+                alert("S'ha fet l'ingrés correctament");
             }else {
                 alert("No s'ha pogut fer l'ingrés")
             }

@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useState} from 'react';
 import Context from "../Context/UserContextProvider";
 
  export default function useUser () {
-    const {jwt, setJWT, user, setUser} = useContext(Context);
+    const {jwt, setJWT, user, setUser, rol, setRol} = useContext(Context);
     const [invalid, setInvalid] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -19,21 +19,23 @@ import Context from "../Context/UserContextProvider";
              return res.json()
          }).then((res)=>{
              if(!res) return setInvalid(true);
-             window.sessionStorage.setItem('jwt',res);
+             window.sessionStorage.setItem('jwt',res['jwt']);
              window.sessionStorage.setItem('user',item['usuari']);
+             window.sessionStorage.setItem('rol',res['rol']);
              setIsLoading(false);
-             setJWT(res);
+             setRol(res['rol']);
              setUser(item['usuari']);
+             setJWT(res['jwt']);
          }).catch(err => {
              setIsLoading(false);
              window.sessionStorage.removeItem('jwt');
-             window.sessionStorage.removeItem('user');
              })
      }, [setJWT]);
 
      const logout = useCallback(() => {
          window.sessionStorage.removeItem('jwt');
          window.sessionStorage.removeItem('user');
+         window.sessionStorage.removeItem('rol');
         setJWT(null);
         setUser(null);
      }, [setJWT, setUser])
@@ -46,7 +48,8 @@ import Context from "../Context/UserContextProvider";
          login,
          logout,
          invalid,
-         user
+         user,
+         rol
      }
  };
 

@@ -8,7 +8,7 @@ import useDiners from "../Servicio/Servei_Diners";
 
 
 export default function Header() {
-    const {isLogged, logout, user} = useUser();
+    const {isLogged, logout, user, rol} = useUser();
     const {diners, vistaDiners} = useDiners();
     const [, navigate] =useLocation();
 
@@ -27,7 +27,7 @@ export default function Header() {
 
                 {
                     isLogged ?
-                        <Navegador name={user} saldo={diners} funcionsaldo={vistaDiners} onClick={handleclick}/>
+                        <Navegador name={user} rol={rol} saldo={diners} funcionsaldo={vistaDiners} onClick={handleclick}/>
                         :
                         <div className="container">
                             <div className="row">

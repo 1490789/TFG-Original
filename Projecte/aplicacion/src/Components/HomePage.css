@@ -3,6 +3,7 @@
     width: 100%;
     margin-bottom: 200px;
 }
+
 .lista-tiquets{
     font-weight: bold;
 }
@@ -43,6 +44,7 @@
     .section-heading p{
        font-size: 12px;
     }
-
-
+    .lista-tiquets {
+        font-size: 12px;
+    }
 }

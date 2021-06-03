@@ -28,11 +28,15 @@ export default function Registrar(){
     return(
         <div>
             <div className="container">
-                <div className="abs-center">
-                    <form onSubmit={handleSubmit} className=" p-2 form">
-                        <div className="form-group">
-                            <h4>Registrar Usuari</h4>
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="section-heading">
+                            <h2>Registrar Usuari</h2>
                         </div>
+                    </div>
+                </div>
+                <div className="row abs-center">
+                    <form onSubmit={handleSubmit} className=" p-2 form">
                         <div className="form-group">
                             <label htmlFor="usuari">Usuari</label>
                             <input value={profile.usuari || ''} type="text" name="usuari" id="usuari" className="form-control" onChange={handleChange} maxLength="30" required/>
@@ -48,6 +52,14 @@ export default function Registrar(){
                         <div className="form-group">
                             <label htmlFor="repass">Repeteix Contrasenya</label>
                             <input value={profile.repass || ''} type="password" name="repass" id="repass" className="form-control" onChange={handleChange} maxLength="30" required/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="rol">Rol</label>
+                            <select name="rol" id="rol" className="form-control" onChange={handleChange} required>
+                                <option value="0">Seleciona</option>
+                                <option value="User">Usuari</option>
+                                <option value="Admin">Administrador</option>
+                            </select>
                         </div>
                         <button type="submit" className="btn btn-dark">Registrar</button>
                     </form>
