@@ -30,9 +30,11 @@ export default function PopupCompra ({Dies, profiles}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        compraTiquets(diaInfant, pagar());
-        handleClose();
-        navigate('/VistaTiquets');
+        if(pagar()){
+            compraTiquets(diaInfant,true);
+            handleClose();
+            navigate('/VistaTiquets');
+        }
     }
 
     const handleChange = (val) => {
@@ -52,7 +54,7 @@ export default function PopupCompra ({Dies, profiles}) {
     const pagar = () =>{
         if(total !== 0){
             if( diners-total <= 0){
-                alert("S'ha fet la reserva però no s'han pogut pagar els tiquets per falta de diners.");
+                alert("Afegeix Diners");
                 return false;
             }else {
                 const item = {};
@@ -160,7 +162,8 @@ export default function PopupCompra ({Dies, profiles}) {
             return profiles.map((p, i) =>
                 <p className="col">{menu[i] !== undefined ? consultaPreu(menu[i]) + "€" : "0€"}</p>
             )
-        }else {
+        }
+        if (profiles !== null && menu === null){
             return profiles.map((p, i) =>
                 <p className="col">0€</p>
             )

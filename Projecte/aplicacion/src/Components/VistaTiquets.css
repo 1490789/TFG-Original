@@ -32,4 +32,7 @@
     .Tiquet button{
         transform: scale(0.7);
     }
+    .head p {
+        font-size: 12px;
+    }
 }

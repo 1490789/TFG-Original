@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import useTiquets from "../Servicio/Servei_CompraTiquets";
 import {Button} from "react-bootstrap";
 import './VistaTiquets.css';
+import CursTitle from "./CursTitle";
 
 export default function VistaTiquets() {
     const {vistaTiquets, tiquets, consultaInfant} = useTiquets();
@@ -113,15 +114,19 @@ export default function VistaTiquets() {
                                     <h3>Tiquets Actuals</h3>
                                 </div>
                             </div>
-                        {header()}
-                        {TiquetsActuals()}
+                        <div className="container">
+                            {header()}
+                            {TiquetsActuals()}
+                        </div>
                         <div className="col-md-12">
                             <div className="section-heading">
                                 <h3>Tiquets Passats</h3>
                             </div>
                         </div>
-                        {header()}
-                        {TiquetsPassats()}
+                        <div className="container">
+                            {header()}
+                            {TiquetsPassats()}
+                        </div>
                     </div> : <h1>No s'ha comprat cap tiquet</h1>
                         }
                     </div>

@@ -32,7 +32,8 @@ export default function Header() {
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-12 LoginTitle">
-                                    <h1 className="">MenjaTickets</h1>
+
+                                    <h1 className=""> <i className="fas fa-apple-alt" style={{color: "#CE33FF"}}/> FastTickets</h1>
                                     <br/>
                                     <p className="subtitle"> Compra i gestiona facilment els tickets menjador de l'Escola dels teus fills</p>
                                 </div>

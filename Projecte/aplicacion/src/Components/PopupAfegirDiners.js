@@ -82,8 +82,7 @@ export default function PopupAfegirDiners () {
                         <h4 className="Total">Total: {suma()}€</h4>
                     </Modal.Body>
                     <Modal.Footer style={{backgroundColor: "#343a40"}}>
-                        <Button variant="danger" onClick={handleClose}>
-                            Tancar
+                        <Button variant="danger" onClick={handleClose}>Tancar
                         </Button>
                         <Button onClick={handleSubmit} variant="success">
                             Pagar

@@ -47,7 +47,9 @@ export default function CalendariDinamicAdmin () {
 
 
     return(
-        <div className="Mes container">
+        <div className="Mes ">
+            <div className={"container"}>
+
             <div className="row">
                 <div className="col-auto"> <h2 className="titolMes">{any}</h2></div>
             </div>
@@ -63,7 +65,10 @@ export default function CalendariDinamicAdmin () {
                 </div>
 
             </div>
+
             <CalendariAdmin Any={any} Index={iMes}/>
+            </div>
+
         </div>
     )
 }

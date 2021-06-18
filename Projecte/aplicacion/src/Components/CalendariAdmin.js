@@ -130,12 +130,12 @@ export default function CalendariAdmin ({Index, Any}) {
     }
 
     function titols() {
-        return  <li className={"row head"} >
+        return  <div className={"row head"} >
             <p className="col">ID</p>
             <p className="col">Alumne</p>
             <p className="col">Pagat</p>
             <p className="col">Menú</p>
-        </li>
+        </div>
     }
 
     return(<>

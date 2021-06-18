@@ -3,6 +3,7 @@ import './Login.css';
 import {useLocation} from "wouter";
 import useUser from "./Servicio/autenticationservice";
 import {Alert} from "react-bootstrap";
+import Registrar from "./Components/Registrar";
 
 
 export default function Login(){
@@ -33,6 +34,9 @@ export default function Login(){
 
     return(
         <div>
+            {
+                isLogged ? navigate('/HomePage') : null
+            }
             { isloading  && <strong>Cheking credentials...</strong>}
 
             { !isloading && <div className="container">

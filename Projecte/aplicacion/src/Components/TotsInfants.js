@@ -3,21 +3,25 @@ import ServeiTotsInfants from "../Servicio/Servei_TotsInfants";
 import './TotsInfants.css';
 import InfantList from "./InfantList";
 import CursTitle from "./CursTitle";
+import InfantRegistre from "../Servicio/enviarRegistreInfant";
 
 export default function  TotsInfants () {
 
     const {profiles, getInfants, subscrits} = ServeiTotsInfants();
-    const cursos = ["P3","P4","P5","1r","2n","3r","4t","5e","6e"];
+    const {consultaCurs, cursos} = InfantRegistre();
     var isBackgroundblack = true;
 
     useEffect(() =>{
+        consultaCurs();
         getInfants();
     },[])
 
     const cursHeading = useCallback( () => {
-        return cursos.map((curs) =>
-            <CursTitle curs={curs} infants={viewInfants} />
-        )
+        if(cursos !== null){
+            return cursos.map((curs) =>
+                <CursTitle curs={curs.Nom} infants={viewInfants} />
+            )
+        }
     })
 
     const changeColor = () => {
@@ -53,7 +57,7 @@ export default function  TotsInfants () {
             </div>
             <div className="row">
                 <div className="col-md-12">
-                    <ul>{cursHeading()}</ul>
+                    {cursHeading()}
                 </div>
             </div>
         </div>

@@ -6,9 +6,9 @@ import Registre from "../Servicio/enviarRegistrar";
 export default function Registrar(){
     const [profile, setProfile] = useState({});
     const [, navigate] =useLocation();
-    const {registra, registrat} = Registre();
-
+    const {registra, registrat, consultaEscoles, escoles} = Registre();
     useEffect(() =>{
+        consultaEscoles();
         if(registrat) navigate('/Homepage');
     },[registrat])
 
@@ -24,6 +24,12 @@ export default function Registrar(){
         event.preventDefault();
         registra(profile)
     };
+
+    const optionsEscoles = () =>{
+        if(escoles !== null){
+            return escoles.map((e) => <option value={e.idEscola}>{e.Nom}</option>)
+        }
+    }
 
     return(
         <div>
@@ -54,6 +60,13 @@ export default function Registrar(){
                             <input value={profile.repass || ''} type="password" name="repass" id="repass" className="form-control" onChange={handleChange} maxLength="30" required/>
                         </div>
                         <div className="form-group">
+                            <label htmlFor="escola">Escola</label>
+                            <select name="escola" id="escola" className="form-control" onChange={handleChange} required>
+                                <option value="0">Seleciona</option>
+                                {optionsEscoles()}
+                            </select>
+                        </div>
+                        <div className="form-group">
                             <label htmlFor="rol">Rol</label>
                             <select name="rol" id="rol" className="form-control" onChange={handleChange} required>
                                 <option value="0">Seleciona</option>
@@ -65,9 +78,6 @@ export default function Registrar(){
                     </form>
                 </div>
             </div>
-
         </div>
-
     );
-
 }

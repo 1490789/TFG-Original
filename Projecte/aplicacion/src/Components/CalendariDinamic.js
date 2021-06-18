@@ -47,7 +47,10 @@ export default function CalendariDinamic ({profiles}) {
 
 
     return(
-      <div className="Mes">
+      <div className="Mes ">
+          <div className="container">
+
+
           <div className="row justify-content-center">
               <div className="col-auto"> <h2 className="titolMes">{any}</h2></div>
           </div>
@@ -65,6 +68,7 @@ export default function CalendariDinamic ({profiles}) {
 
           </div>
           <Calendari Any={any} Index={iMes} profiles={profiles}/>
+          </div>
       </div>
     )
 }

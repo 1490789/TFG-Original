@@ -6,10 +6,10 @@ import InfantRegistre from "../Servicio/enviarRegistreInfant";
 export default function RegistrarInfant(){
     const [profile, setProfile] = useState({});
     const [, navigate] =useLocation();
-    const {registra, registrat} = InfantRegistre();
-    const cursos = ["P3", "P4", "P5", "1r", "2n", "3r", "4t", "5e", "6e"]
+    const {registra, registrat, consultaCurs, cursos} = InfantRegistre();
 
     useEffect(() =>{
+        consultaCurs();
         if(registrat) navigate('/Homepage');
     },[registrat])
 
@@ -25,6 +25,12 @@ export default function RegistrarInfant(){
         event.preventDefault();
         registra(profile)
     };
+
+    const optionsCurs = () => {
+        if(cursos !== null){
+            return cursos.map((c) => <option value={c.idCurs}>{c.Nom}</option>)
+        }
+    }
 
     return(
         <div>
@@ -46,16 +52,12 @@ export default function RegistrarInfant(){
                             <label htmlFor="Edat">Edat</label>
                             <input value={profile.Edat || ''} type="number" name="Edat" id="Edat" className="form-control" onChange={handleChange} maxLength="30" required/>
                         </div>
-                        <div className="Check">
-                            <label>Curs</label>
-                            {
-                                cursos.map((curs) =>
-                                    <div className="form-check">
-                                        <input value={curs} type="radio" name="Curs" id="Curs" className="form-check-input" maxLength="30" onClick={handleChange} required/>
-                                        <label className="form-check-label" htmlFor="Curs" >{curs}</label>
-                                     </div>
-                                )
-                            }
+                        <div className="form-group">
+                            <label htmlFor="Curs">Curs</label>
+                            <select name="Curs" id="Curs" className="form-control" onChange={handleChange} required>
+                                <option value="0">Seleciona</option>
+                                {optionsCurs()}
+                            </select>
                         </div>
                         <div className="form-group">
                             <label htmlFor="Tutor">Tutor de l'infant</label>

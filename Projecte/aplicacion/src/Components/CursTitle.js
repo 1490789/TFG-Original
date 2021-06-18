@@ -35,9 +35,12 @@ export default class CursTitle extends React.Component{
                 <Accordion.Collapse eventKey="0">
 
                     <Card.Body>
-                        {this.props.titols !== undefined ? <ul>
+                        {this.props.titols !== undefined ? <div className="container">
+
                             {this.props.titols()}
-                        </ul> : null}
+                        </div>
+
+                            : null}
 
                         {this.props.infants(this.props.curs)}
                     </Card.Body>
